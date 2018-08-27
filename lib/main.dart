@@ -6,7 +6,6 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final wordPair = new WordPair.random();
     return new MaterialApp(
       title: 'Welcome to Flutter',
       home: new RandomWords(),
@@ -21,11 +20,12 @@ class RandomWordsState extends State<RandomWords> {
   final _biggerFont = const TextStyle(fontSize: 18.0);
   @override
   Widget build(BuildContext context) {
-//    final wordPair = new WordPair.random();
-//    return new Text(wordPair.asPascalCase);
     return new Scaffold (
       appBar: new AppBar(
-        title: new Text('Startup Name Generator'),
+        title: new Text('Test Flutter'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSuggestions(),
     );
@@ -35,17 +35,16 @@ class RandomWordsState extends State<RandomWords> {
     return new ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {
-          // 在每一列之前，添加一个1像素高的分隔线widget
           if (i.isOdd) return new Divider();
           final index = i ~/ 2;
-          // 如果是建议列表中最后一个单词对
           if (index >= _suggestions.length) {
-            // ...接着再生成10个单词对，然后添加到建议列表
             _suggestions.addAll(generateWordPairs().take(10));
           }
           return _buildRow(_suggestions[index]);
         }
     );
+
+
   }
 
   Widget _buildRow(WordPair pair) {
@@ -69,6 +68,37 @@ class RandomWordsState extends State<RandomWords> {
           }
         });
       },
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) {
+          final tiles = _saved.map(
+                (pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = ListTile
+              .divideTiles(
+            context: context,
+            tiles: tiles,
+          )
+              .toList();
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text('Saved Suggestions'),
+            ),
+            body: new ListView(children: divided),
+          );
+        },
+      ),
     );
   }
 }
