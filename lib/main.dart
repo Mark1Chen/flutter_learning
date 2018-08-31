@@ -19,9 +19,10 @@ class RandomWordsState extends State<RandomWords> {
   final _saved = new Set<WordPair>();
 
   final _biggerFont = const TextStyle(fontSize: 18.0);
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold (
+    return new Scaffold(
       appBar: new AppBar(
         title: new Text('Test Flutter'),
         actions: <Widget>[
@@ -42,10 +43,7 @@ class RandomWordsState extends State<RandomWords> {
             _suggestions.addAll(generateWordPairs().take(10));
           }
           return _buildRow(_suggestions[index]);
-        }
-    );
-
-
+        });
   }
 
   Widget _buildRow(WordPair pair) {
@@ -74,11 +72,9 @@ class RandomWordsState extends State<RandomWords> {
 
   void _pushSaved() {
     Navigator.of(context).push(
-      new MaterialPageRoute(
-        builder: (context) {
-           return new SavedPage(_saved);
-        }
-      ),
+      new MaterialPageRoute(builder: (context) {
+        return new SavedPage(_saved);
+      }),
     );
   }
 }
