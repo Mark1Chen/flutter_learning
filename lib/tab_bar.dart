@@ -3,9 +3,7 @@ import 'package:flutter/widgets.dart';
 
 class TabPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return new TabState();
-  }
+  State<StatefulWidget> createState() => new TabState();
 }
 
 class TabState extends State<TabPage>{

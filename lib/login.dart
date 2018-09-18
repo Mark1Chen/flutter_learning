@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return new LoginState();
-  }
+  State<StatefulWidget> createState() => new LoginState();
 }
 
 class LoginState extends State<LoginPage> {
