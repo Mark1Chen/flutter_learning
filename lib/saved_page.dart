@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/login.dart';
+import 'package:flutter_app/tab_bar.dart';
 
 class SavedPage extends StatefulWidget {
   var _saved = new Set<WordPair>();
@@ -38,7 +39,7 @@ class HttpState extends State<SavedPage> {
             // _httptest();
             Navigator.of(context).push(
               new MaterialPageRoute(builder: (context) {
-                return new LoginPage();
+                return new TabPage();
               }),
             );
           },
