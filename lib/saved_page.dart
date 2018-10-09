@@ -3,8 +3,6 @@ import 'dart:convert';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bottom_tab.dart';
-import 'package:flutter_app/tab_bar.dart';
 
 class SavedPage extends StatefulWidget {
   var _saved = new Set<WordPair>();
@@ -36,12 +34,7 @@ class HttpState extends State<SavedPage> {
             style: _biggerFont,
           ),
           onTap: () {
-            // _httptest();
-            Navigator.of(context).push(
-              new MaterialPageRoute(builder: (context) {
-                return new BottomTabPage();
-              }),
-            );
+            _httptest();
           },
         );
       },
@@ -69,8 +62,8 @@ class HttpState extends State<SavedPage> {
       var request = await httpClient.getUrl(Uri.parse(url));
       var response = await request.close();
       if (response.statusCode == HttpStatus.OK) {
-        var json = await response.transform(UTF8.decoder).join();
-        var data = JSON.decode(json);
+        var str = await response.transform(utf8.decoder).join();
+        var data = json.decode(str);
         result = data['origin'];
       } else {
         result =
