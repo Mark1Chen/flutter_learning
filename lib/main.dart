@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bottom_tab.dart';
+import 'package:flutter_app/caculator.dart';
 import 'package:flutter_app/login.dart';
 import 'package:flutter_app/random_list.dart';
 import 'package:flutter_app/tab_bar.dart';
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Welcome to Flutter',
+        debugShowCheckedModeBanner: false,
+        title: 'Welcome to Flutter',
       home: new MainPage()
     );
   }
@@ -38,6 +40,13 @@ class MainState extends State {
                       route_login();
                     },
                     child: new Text("Login")
+                ),
+
+                new RaisedButton(
+                    onPressed: () {
+                      route_caculator();
+                    },
+                    child: new Text("Caculator")
                 ),
 
                 new RaisedButton(
@@ -98,6 +107,14 @@ class MainState extends State {
     Navigator.of(context).push(
       new MaterialPageRoute(builder: (context) {
         return new TabPage();
+      }),
+    );
+  }
+
+  void route_caculator() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(builder: (context) {
+        return new Caculator();
       }),
     );
   }
