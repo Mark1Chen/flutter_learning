@@ -5,6 +5,8 @@ import 'package:flutter_app/login.dart';
 import 'package:flutter_app/random_list.dart';
 import 'package:flutter_app/tab_bar.dart';
 
+import 'dialog.dart';
+
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,8 +15,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Welcome to Flutter',
-      home: new MainPage()
-    );
+        home: new MainPage());
   }
 }
 
@@ -69,6 +70,13 @@ class MainState extends State {
                     },
                     child: new Text("Tab")
                 ),
+
+                new RaisedButton(
+                    onPressed: () {
+                      route_dialog();
+                    },
+                    child: new Text("Dialogs")
+                ),
               ],
             )
         ),
@@ -77,7 +85,6 @@ class MainState extends State {
 
     );
   }
-
 
   void route_login() {
     Navigator.of(context).push(
@@ -115,6 +122,14 @@ class MainState extends State {
     Navigator.of(context).push(
       new MaterialPageRoute(builder: (context) {
         return new Caculator();
+      }),
+    );
+  }
+
+  void route_dialog() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(builder: (context) {
+        return new DialogPage();
       }),
     );
   }
